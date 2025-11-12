@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraft Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>CodeCraft</h1>
+            </div>
+            <div class="user-info">
+                <span class="user-name" id="user-name">Welcome, Student!</span>
+                <div class="progress-indicator">
+                    <i class="fas fa-chart-line"></i>
+                    <span id="overall-progress">0%</span>
+                </div>
+            </div>
+        </header>
+
+        
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <div class="welcome-section">
+                <h2>Welcome to CodeCraft Learning Platform</h2>
+                <p>Master Java, Object-Oriented Programming, and SQL through interactive tests and assessments.</p>
+            </div>
+
+            <!-- Test Categories -->
+            <div class="test-categories">
+                <div class="category-card" data-test="java">
+                    <div class="category-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h3>Java Programming</h3>
+                    <p>Test your knowledge of Java fundamentals, syntax, and core concepts.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="java-progress"></div>
+                    </div>
+                    <span class="progress-text" id="java-score">0/10</span>
+                    <button class="start-test-btn" onclick="startTest('java')">
+                        <i class="fas fa-play"></i> Start Test
+                    </button>
+                </div>
+
+                <div class="category-card" data-test="oops">
+                    <div class="category-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Object-Oriented Programming</h3>
+                    <p>Master OOP concepts including classes, inheritance, polymorphism, and encapsulation.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="oops-progress"></div>
+                    </div>
+                    <span class="progress-text" id="oops-score">0/10</span>
+                    <button class="start-test-btn" onclick="startTest('oops')">
+                        <i class="fas fa-play"></i> Start Test
+                    </button>
+                </div>
+
+                <div class="category-card" data-test="sql">
+                    <div class="category-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>SQL Database</h3>
+                    <p>Test your SQL skills including queries, joins, subqueries, and database design.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="sql-progress"></div>
+                    </div>
+                    <span class="progress-text" id="sql-score">0/10</span>
+                    <button class="start-test-btn" onclick="startTest('sql')">
+                        <i class="fas fa-play"></i> Start Test
+                    </button>
+                </div>
+
+                <div class="category-card" data-test="javaCoding">
+                    <div class="category-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Java Coding</h3>
+                    <p>Analyze Java snippets and predict output, complexity, and behavior.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="javaCoding-progress"></div>
+                    </div>
+                    <span class="progress-text" id="javaCoding-score">0/10</span>
+                    <button class="start-test-btn" onclick="startTest('javaCoding')">
+                        <i class="fas fa-play"></i> Start Test
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="stats-section">
+                <h3>Your Learning Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Total Tests Completed</h4>
+                        <span id="total-tests">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-percentage"></i>
+                        <h4>Average Score</h4>
+                        <span id="average-score">0%</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Time Spent</h4>
+                        <span id="time-spent">0 min</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <h4>Streak</h4>
+                        <span id="streak">0 days</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Test Modal -->
+        <div id="test-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="test-title">Test Title</h2>
+                    <button class="close-btn" onclick="closeTest()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="test-progress">
+                        <span>Question <span id="current-question">1</span> of <span id="total-questions">10</span></span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="test-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="question-container">
+                        <h3 id="question-text">Question will appear here</h3>
+                        <div class="options-container" id="options-container">
+                            <!-- Options will be dynamically generated -->
+                        </div>
+                    </div>
+                    <div class="test-controls">
+                        <button id="prev-btn" class="btn btn-secondary" onclick="previousQuestion()" disabled>Previous</button>
+                        <button id="next-btn" class="btn btn-primary" onclick="nextQuestion()">Next</button>
+                        <button id="submit-btn" class="btn btn-success" onclick="submitTest()" style="display: none;">Submit Test</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Modal -->
+        <div id="results-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Test Results</h2>
+                    <button class="close-btn" onclick="closeResults()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="results-container">
+                        <div class="score-display">
+                            <div class="score-circle">
+                                <span id="final-score">0</span>
+                                <span class="score-label">/10</span>
+                            </div>
+                            <h3 id="score-message">Great Job!</h3>
+                        </div>
+                        <div class="results-details">
+                            <div class="result-item">
+                                <span>Correct Answers:</span>
+                                <span id="correct-answers">0</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Incorrect Answers:</span>
+                                <span id="incorrect-answers">0</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Time Taken:</span>
+                                <span id="time-taken">0 min</span>
+                            </div>
+                        </div>
+                        <div class="recommendations">
+                            <h3>Recommended Resources</h3>
+                            <ul id="recommendations-list" class="recommendations-list"></ul>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="retakeTest()">Retake Test</button>
+                            <button class="btn btn-secondary" onclick="closeResults()">Back to Dashboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="rec_config.js"></script>
+    <script src="youtube_service.js"></script>
+    <script src="recommend_service.js"></script>
+    <script src="script.js"></script>
+  </body>
+  </html>
