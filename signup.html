@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up • CodeCraft</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <h1>CodeCraft</h1>
+      </div>
+      <div class="user-info">
+        <span class="user-name">Create Account</span>
+        <div class="progress-indicator">
+          <i class="fas fa-user-plus"></i>
+          <span>Signup</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <div class="welcome-section">
+        <h2>Create your account</h2>
+        <p>Sign up to save progress and get personalized recommendations.</p>
+      </div>
+
+      <div class="modal-body" style="padding:0;">
+        <form id="signup-form" class="login-form" style="max-width:520px;margin:0 auto;">
+          <div class="form-row">
+            <label for="signup-name">Name</label>
+            <input type="text" id="signup-name" placeholder="Enter your name" required />
+          </div>
+          <div class="form-row">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="Enter your email" required />
+          </div>
+          <div class="form-row">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Create a password" minlength="6" required />
+          </div>
+          <div class="form-actions" style="justify-content:space-between;align-items:center;">
+            <a href="login.html" class="btn btn-secondary" style="text-decoration:none;">Already have an account?</a>
+            <button type="submit" class="btn btn-primary" id="signup-submit">
+              <i class="fas fa-user-plus"></i> Create Account
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
